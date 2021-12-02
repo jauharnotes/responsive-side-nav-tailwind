@@ -1,6 +1,13 @@
 import { AiFillCrown, AiOutlineMenu } from "react-icons/ai";
+import { useState } from "react";
 
 export default function Home() {
+  const [toggle, setToggle] = useState("false");
+
+  function handleToggle() {
+    setToggle(!toggle);
+  }
+
   return (
     <div className="relative min-h-screen md:flex">
       {/* mobile menu bar */}
@@ -11,13 +18,22 @@ export default function Home() {
         </a>
 
         {/* mobile menu botton */}
-        <button className="p-4 hover:outline-none hover:bg-gray-700">
+        <button
+          onClick={handleToggle}
+          className="p-4 hover:outline-none hover:bg-gray-700"
+        >
           <AiOutlineMenu className="text-lg" />
         </button>
       </div>
 
       {/* sidebar */}
-      <div className="bg-blue-800 text-blue-100 w-64 space-y-6 px-4 py-4 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+      <div
+        className={
+          toggle
+            ? "-translate-x-full bg-blue-800 text-blue-100 w-64 space-y-6 px-4 py-4 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out"
+            : "bg-blue-800 text-blue-100 w-64 space-y-6 px-4 py-4 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out"
+        }
+      >
         {/* logo */}
         <a href="#" className="text-white flex items-center">
           <AiFillCrown className="text-3xl mr-1" />
